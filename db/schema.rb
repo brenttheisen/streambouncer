@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110311201508) do
+ActiveRecord::Schema.define(:version => 20110311222348) do
+
+  create_table "bounces", :force => true do |t|
+    t.boolean  "active",          :default => true
+    t.integer  "user_id",                           :null => false
+    t.integer  "twitter_user_id",                   :null => false
+    t.datetime "expire_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "twitter_users", :force => true do |t|
+    t.string   "twitter_id"
+    t.string   "username"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "twitter_users", ["twitter_id"], :name => "index_twitter_users_on_twitter_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "twitter_username"

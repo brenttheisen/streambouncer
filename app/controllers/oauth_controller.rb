@@ -36,6 +36,17 @@ class OauthController < ApplicationController
       @logged_in_user.twitter_access_token = access_token.token
       @logged_in_user.twitter_access_token_secret = access_token.secret
       @logged_in_user.save
+      
+      client.all_friends.each { |user| 
+        twitter_user = TwitterUser.where(:username => user['twitter_id']).first
+        twitter_user = TwitterUser.new if twitter_user.nil?
+        twitter_user.twitter_id = user['id']
+        twitter_user.username = user['screen_name']
+        twitter_user.name = user['name']
+        twitter_user.save
+      }
+      
+      redirect_to :controller => :home
     else
       # Tell them auth failed
     end
