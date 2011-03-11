@@ -1,21 +1,17 @@
 
 <h1>stream bouncer</h1>
 
-<% if @logged_in_user.nil? %>
+<a href="/logout">Logout</a>
 
-	<p>Ever have a guy you follow go crazy tweeting about a event you have no interest in? Any other time of the year he's a good follow but 
-	come #sxsw time he gets annoying real fast. With Stream Bouncer you can setup a bounce that will unfollow now but automatically follow 
-	himat a later time.</p>
-	
-	<p>To get started just login...</p>
-	
-	<a href="/oauth/twitter">Login with Twitter</a>
+<h1>Past Bounces</h1>
+<p>This is where we'll put a list of the three most recently expired bounces.</p>
 
-<% else %>
+<h1>Followers</h1>
+<form action="/search" method="get">
+	<input type="text" name="q" />
+</form>
 
-	<a href="/logout">Logout</a>
-
-	<h1>Notifications</h1>
+<ul>
 	
 
-<% end %>
+</ul>

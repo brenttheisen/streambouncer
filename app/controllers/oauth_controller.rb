@@ -38,7 +38,7 @@ class OauthController < ApplicationController
       @logged_in_user.save
       
       client.all_friends.each { |user| 
-        twitter_user = TwitterUser.where(:username => user['twitter_id']).first
+        twitter_user = TwitterUser.where(:twitter_id => user['id']).first
         twitter_user = TwitterUser.new if twitter_user.nil?
         twitter_user.twitter_id = user['id']
         twitter_user.username = user['screen_name']
