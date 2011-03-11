@@ -1,0 +1,7 @@
+<% if @authorized %>
+	Holy shit, you're authorized!
+	
+	<pre><%= @access_token.to_json %></pre>
+<% else %>
+	Dammit, you're not authorized.
+<% end %>
