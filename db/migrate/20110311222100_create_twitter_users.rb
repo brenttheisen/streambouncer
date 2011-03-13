@@ -1,9 +1,9 @@
 class CreateTwitterUsers < ActiveRecord::Migration
   def self.up
     create_table :twitter_users do |t|
-      t.string :twitter_id
-      t.string :username
-      t.string :name
+      t.string :twitter_id, :null => false
+      t.string :username, :null => false
+      t.string :name, :null => false
       t.timestamps
     end
     add_index :twitter_users, :twitter_id, :unique => true

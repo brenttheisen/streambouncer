@@ -6,7 +6,7 @@ class CreateBounces < ActiveRecord::Migration
       t.boolean :active, :default => true
       t.boolean :executed, :default => false
       t.boolean :hide_notification, :default => false
-      t.datetime :expire_at
+      t.datetime :expire_at, :null => false
       t.timestamps
     end
   end

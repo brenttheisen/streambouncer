@@ -30,21 +30,35 @@ class OauthController < ApplicationController
     )
     if client.authorized?
       twitter_info = client.info
-      @logged_in_user = User.where(:twitter_username => twitter_info['screen_name']).first
+      @logged_in_user = User.
+                          joins(['join twitter_users on (twitter_users.id=users.twitter_user_id)']).
+                          where('twitter_users.twitter_id=?', twitter_info['id']).
+                          readonly(false).
+                          first
       @logged_in_user = User.new if @logged_in_user.nil?
-      @logged_in_user.twitter_username = twitter_info['screen_name']
       @logged_in_user.twitter_access_token = access_token.token
       @logged_in_user.twitter_access_token_secret = access_token.secret
-      @logged_in_user.save
       
-      client.all_friends.each { |user| 
+      @logged_in_user.twitter_user = TwitterUser.new if @logged_in_user.twitter_user.nil? 
+      @logged_in_user.twitter_user.update_from_response twitter_info
+      @logged_in_user.save
+
+      twitter_user_friend_ids = []
+      friends = client.all_friends
+      friends.each { |user| 
         twitter_user = TwitterUser.where(:twitter_id => user['id']).first
         twitter_user = TwitterUser.new if twitter_user.nil?
-        twitter_user.twitter_id = user['id']
-        twitter_user.username = user['screen_name']
-        twitter_user.name = user['name']
+        twitter_user.update_from_response user
         twitter_user.save
+        
+        if Follow.where(:user_id => @logged_in_user.id, :twitter_user_id => twitter_user.id).count == 0
+          Follow.new(:user_id => @logged_in_user.id, :twitter_user_id => twitter_user.id).save
+        end
+        
+        twitter_user_friend_ids << twitter_user.id
       }
+      
+      Follow.delete_all([ 'twitter_user_id not in(?)', twitter_user_friend_ids ])
       
       redirect_to :controller => :home
     else
