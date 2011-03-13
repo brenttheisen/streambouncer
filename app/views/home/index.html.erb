@@ -14,10 +14,16 @@
 </form>
 
 <ul id="search">
+	<Everyone sorted by last time they were bounced
+
 	<% @logged_in_user.followed_twitter_users.each { |twitter_user| %>
 		<li>
+			<img src="<%= twitter_user.picture_url %>" />
 			<div class="username"><%= twitter_user.username %></div>
 			<div class="name"><%= twitter_user.name %></div>
+			<% if twitter_user.bounce
+			<a class="ajax" href="/bounce">Bounce</a>
+			
 		</li>
 	<% } %>
 </ul>

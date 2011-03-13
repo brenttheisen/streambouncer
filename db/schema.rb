@@ -13,8 +13,6 @@
 ActiveRecord::Schema.define(:version => 20110312001204) do
 
   create_table "bounces", :force => true do |t|
-    t.integer  "user_id",                           :null => false
-    t.integer  "twitter_user_id",                   :null => false
     t.boolean  "active",          :default => true
     t.datetime "expire_at", :null => false
     t.datetime "executed_at"
@@ -25,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
   create_table "follows", :force => true do |t|
     t.integer  "user_id",         :null => false
     t.integer  "twitter_user_id", :null => false
+    t.boolean  "active", :default => true
+    t.integer  "bounce_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

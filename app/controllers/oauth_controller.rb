@@ -58,7 +58,7 @@ class OauthController < ApplicationController
         twitter_user_friend_ids << twitter_user.id
       }
       
-      Follow.delete_all([ 'twitter_user_id not in(?)', twitter_user_friend_ids ])
+      Follow.update_all('active=0', [ 'twitter_user_id not in(?)', twitter_user_friend_ids ])
       
       redirect_to :controller => :home
     else
