@@ -14,8 +14,9 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
 
   create_table "bounces", :force => true do |t|
     t.boolean  "active",          :default => true
-    t.datetime "expire_at", :null => false
+    t.datetime "take_action_at", :null => false
     t.datetime "executed_at"
+    t.datetime "canceled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

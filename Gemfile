@@ -32,3 +32,4 @@ gem 'sqlite3'
 
 gem 'twitter_oauth'
 gem 'mysql2'
+gem 'ruby-debug'

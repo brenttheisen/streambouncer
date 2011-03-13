@@ -25,9 +25,9 @@
 			<div class="username"><%= twitter_user.username %></div>
 			<div class="name"><%= twitter_user.name %></div>
 			<% if follow.bounce.nil? %>
-				<a class="ajax" href="/bounce">Bounce</a>
+				<a class="ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
 			<% else %>
-				<a class="ajax" href="/unbounce">Un-Bounce</a>
+				<a class="ajax" href="/unbounce?id=<%= follow.id %>">Un-Bounce</a>
 			<% end %>
 			
 		</li>
