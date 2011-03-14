@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
   end
 
   create_table "twitter_users", :force => true do |t|
-    t.string   "twitter_id", :null => false
+    t.integer  "twitter_id", :null => false
     t.string   "username", :null => false
     t.string   "name", :null => false
     t.string   "picture_url", :null => false
