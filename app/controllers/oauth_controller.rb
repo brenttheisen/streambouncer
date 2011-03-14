@@ -3,7 +3,7 @@ class OauthController < ApplicationController
   CONSUMER_KEY = 'HtjH1S6zcrLQcxUv8iKJ9g'
   CONSUMER_SECRET = 'RIYCjfA3ChoIA29JTX9nZ2IVUUM9rqiCnndnl1ipU'
   
-  CALLBACK_PROD = 'http://streambouncer.heroku.com//oauth/twitter_callback'
+  CALLBACK_PROD = 'http://streambouncer.heroku.com/oauth/twitter_callback'
   CALLBACK_TEST = 'http://localhost:3000/oauth/twitter_callback'
   
   def twitter
