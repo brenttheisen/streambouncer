@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
   add_index "twitter_users", ["twitter_id"], :name => "index_twitter_users_on_twitter_id", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "twitter_user_id", :null => false
+    t.integer  "twitter_user_id", :null => false
     t.string   "twitter_access_token", :null => false
     t.string   "twitter_access_token_secret", :null => false
     t.datetime "created_at"
