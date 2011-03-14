@@ -11,7 +11,7 @@ class OauthController < ApplicationController
         :consumer_key => CONSUMER_KEY,
         :consumer_secret => CONSUMER_SECRET
     )
-    request_token = client.request_token(:oauth_callback => RAILS_ENV == 'prod' ? CALLBACK_PROD : CALLBACK_TEST)
+    request_token = client.request_token(:oauth_callback => RAILS_ENV == 'production' ? CALLBACK_PROD : CALLBACK_TEST)
     #:oauth_callback required for web apps, since oauth gem by default force PIN-based flow 
     #( see http://groups.google.com/group/twitter-development-talk/browse_thread/thread/472500cfe9e7cdb9/848f834227d3e64d )
     
