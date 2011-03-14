@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Communicating with Twitter...</h1>
+  </body>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      var urlParams = window.location.href.substring(window.location.href.indexOf('?'));
+      $.ajax({
+        url: '/oauth/close_window' + urlParams,
+        dataType: 'script'
+      });
+    });
+  </script>
+</html>

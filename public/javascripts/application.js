@@ -1,5 +1,11 @@
 $(function() {
 	
+	$('a.oauth').click(function (e) {
+		e.preventDefault();
+		
+		window.open($(this).attr('href'), "oauthWindow", "width=800,height=450,scrollbars=no,dependent=no");
+	});
+	
     $('form.ajax').submit(function(e) {
         e.preventDefault();
         

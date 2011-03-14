@@ -3,8 +3,8 @@ class OauthController < ApplicationController
   CONSUMER_KEY = 'HtjH1S6zcrLQcxUv8iKJ9g'
   CONSUMER_SECRET = 'RIYCjfA3ChoIA29JTX9nZ2IVUUM9rqiCnndnl1ipU'
   
-  CALLBACK_PROD = 'http://streambouncer.heroku.com/oauth/twitter_callback'
-  CALLBACK_TEST = 'http://localhost:3000/oauth/twitter_callback'
+  CALLBACK_PROD = 'http://streambouncer.heroku.com/oauth/authorized'
+  CALLBACK_TEST = 'http://localhost:3000/oauth/authorized'
   
   def twitter
     client = TwitterOAuth::Client.new(
@@ -20,7 +20,11 @@ class OauthController < ApplicationController
     redirect_to request_token.authorize_url
   end
   
-  def twitter_callback
+  def authorized
+    render :layout => false
+  end
+  
+  def close_window
     request_token = session[:twitter_request_token]
     client = TwitterOAuth::Client.new(
         :consumer_key => CONSUMER_KEY,
@@ -62,8 +66,6 @@ class OauthController < ApplicationController
       }
       
       Follow.update_all('active=true', [ 'twitter_user_id not in(?)', twitter_user_friend_ids ])
-      
-      redirect_to :controller => :home
     else
       # Tell them auth failed
     end
