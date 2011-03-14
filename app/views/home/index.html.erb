@@ -34,9 +34,9 @@
 			<div class="last-tweet"><%= twitter_user.last_tweet %></div>
 			<div class="last-tweet-at"><%= twitter_user.last_tweet_at %></div>
 			<% if follow.bounce.nil? %>
-				<a class="ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
+				<a class="bounce-link ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
 			<% else %>
-				<a class="ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
+				<a class="bounce-link ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
 			<% end %>
 			
 		</li>
