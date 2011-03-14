@@ -14,12 +14,12 @@
   </ul>
 <% end %>
 
-
-<h1>Followers</h1>
-
 <form class="ajax" action="/search">
-	<input name="q" type="text" />
-	<input type="reset" value="Clear" />
+	<div id="search">
+		<input class="search-box" name="q" type="text" />
+		<input class="reset" type="reset" value="Clear" />
+		<div class="clear"></div>
+	</div>
 </form>
 
 <ul id="follow-search-results">
@@ -29,8 +29,8 @@
 	%>
 		<li id="follow_<%= follow.id %>">
 			<img src="<%= twitter_user.picture_url %>" />
-			<div class="username"><%= twitter_user.username %></div>
 			<div class="name"><%= twitter_user.name %></div>
+			<div class="username"><%= twitter_user.username %></div>
 			<div class="last-tweet"><%= twitter_user.last_tweet %></div>
 			<div class="last-tweet-at"><%= twitter_user.last_tweet_at %></div>
 			<% if follow.bounce.nil? %>

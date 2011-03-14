@@ -8,28 +8,28 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<div id="header">
-  <div id="header-logo">
-  	<h1>stream bouncer</h1>
-  </div>
-  
-  <% 
-    unless @logged_in_user.nil?
-      twitter_user = @logged_in_user.twitter_user
-  %>
-  	<div id="login-widget">
-      <img src="<%= twitter_user.picture_url %>" />
-  		<div class="username"><%= twitter_user.username %></div>
-  		<div class="name"><%= twitter_user.name %></div>
-  		<a class="ajax" href="/logout">Logout</a>
-  	</div>
-  <% end %>
-</div>
-<div style="clear: both;"></div>
-
-<div id="content">
-<%= yield %>
+<div id="wrapper" class="container_12">
+	<div id="header" class="grid_8 push_2">
+	  <a id="header-logo" href="/" title="streambouncer.com"></a>
+	  
+	  <% 
+		unless @logged_in_user.nil?
+		  twitter_user = @logged_in_user.twitter_user
+	  %>
+		<div id="login-widget">
+		  <img src="<%= twitter_user.picture_url %>" />
+			<div class="username"><%= twitter_user.username %></div>
+			<div class="name"><%= twitter_user.name %></div>
+			<a class="ajax" href="/logout">Logout</a>
+		</div>
+	  <% end %>
+	</div>
+	<div style="clear: both;"></div>
+	
+	<div id="content" class="grid_6 push_3">
+	<%= yield %>
+	</div>
+	<div style="clear: both;"></div>
 </div>
 
 <% if RAILS_ENV == 'production' %>
