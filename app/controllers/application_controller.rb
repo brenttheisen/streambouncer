@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_user_controller
   after_filter :set_user_session
   
+  def host_port_name
+    self.request.port == 80 ? self.request.host : "#{self.request.host}:#{self.request.port}"
+  end
+  
   private
   
   def set_user_controller
