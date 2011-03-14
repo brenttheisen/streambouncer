@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
     t.string   "picture_url", :null => false
     t.string   "last_tweet"
     t.datetime "last_tweet_at"
+    t.integer  "friends_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
