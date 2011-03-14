@@ -3,12 +3,15 @@ class OauthController < ApplicationController
   CONSUMER_KEY = 'HtjH1S6zcrLQcxUv8iKJ9g'
   CONSUMER_SECRET = 'RIYCjfA3ChoIA29JTX9nZ2IVUUM9rqiCnndnl1ipU'
   
+  CALLBACK_PROD = 'http://http://streambouncer.heroku.com//oauth/twitter_callback'
+  CALLBACK_TEST = 'http://localhost:3000/oauth/twitter_callback'
+  
   def twitter
     client = TwitterOAuth::Client.new(
         :consumer_key => CONSUMER_KEY,
         :consumer_secret => CONSUMER_SECRET
     )
-    request_token = client.request_token(:oauth_callback => 'http://localhost:3000/oauth/twitter_callback')
+    request_token = client.request_token(:oauth_callback => RAILS_ENV == 'prod' ? CALLBACK_PROD : CALLBACK_TEST)
     #:oauth_callback required for web apps, since oauth gem by default force PIN-based flow 
     #( see http://groups.google.com/group/twitter-development-talk/browse_thread/thread/472500cfe9e7cdb9/848f834227d3e64d )
     
