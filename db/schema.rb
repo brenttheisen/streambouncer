@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
 
   create_table "bounces", :force => true do |t|
     t.boolean  "active",          :default => true
+    t.boolean  "hide_past_bounces", :default => false
     t.datetime "take_action_at", :null => false
     t.datetime "executed_at"
     t.datetime "canceled_at"
@@ -35,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
     t.string   "username", :null => false
     t.string   "name", :null => false
     t.string   "picture_url", :null => false
+    t.string   "last_tweet"
+    t.datetime "last_tweet_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

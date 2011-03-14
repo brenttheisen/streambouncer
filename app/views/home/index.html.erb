@@ -1,10 +1,19 @@
 
-<h1>stream bouncer</h1>
+<% if @past_bounces.length > 0 %>
+  <h1>Past Bounces</h1>
+  <ul id="past-bounces">
+    <% 
+      @past_bounces.each do |bounce|
+        follow = bounce.follow
+        twitter_user = follow.twitter_user 
+    %>
+      <li>
+        Auto-followed <%= twitter_user.username %>.
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
-<a class="ajax" href="/logout">Logout</a>
-
-<h1>Past Bounces</h1>
-<p>This is where we'll put a list of the three most recently expired bounces, if the user has any.</p>
 
 <h1>Followers</h1>
 
@@ -13,21 +22,21 @@
 	<input type="reset" value="Clear" />
 </form>
 
-<ul id="search">
-	<Everyone sorted by last time they were bounced
-
+<ul id="follow-search-results">
 	<% 
-		@logged_in_user.follows.each { |follow|
+		@follows.each { |follow|
 			twitter_user = follow.twitter_user 
 	%>
-		<li>
+		<li id="follow_<%= follow.id %>">
 			<img src="<%= twitter_user.picture_url %>" />
 			<div class="username"><%= twitter_user.username %></div>
 			<div class="name"><%= twitter_user.name %></div>
+			<div class="last-tweet"><%= twitter_user.last_tweet %></div>
+			<div class="last-tweet-at"><%= twitter_user.last_tweet_at %></div>
 			<% if follow.bounce.nil? %>
 				<a class="ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
 			<% else %>
-				<a class="ajax" href="/unbounce?id=<%= follow.id %>">Un-Bounce</a>
+				<a class="ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
 			<% end %>
 			
 		</li>

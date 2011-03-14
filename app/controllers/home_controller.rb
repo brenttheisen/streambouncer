@@ -1,6 +1,12 @@
 class HomeController < ApplicationController
   
   def index
-    render :action => 'index_not_logged_in' if @logged_in_user.nil?
+    if @logged_in_user.nil?
+      render :action => 'index_not_logged_in'
+      return
+    end
+
+    @past_bounces = Bounce.where(['hide_past_bounces=? and executed_at is not null', false])
+    @follows = Follow.where(['user_id=?', @logged_in_user.id]).includes([:twitter_user, :bounce])
   end
 end

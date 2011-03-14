@@ -5,6 +5,8 @@ class TwitterUser < ActiveRecord::Base
     self.username = response['screen_name']
     self.name = response['name']
     self.picture_url = response['profile_image_url']
+    self.last_tweet = response['status']['text']
+    self.last_tweet_at = response['status']['created_at']
       
     self
   end
