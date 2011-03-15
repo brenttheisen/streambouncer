@@ -7,8 +7,8 @@ class SearchController < ApplicationController
     
     find_params = { :offset => @offset, :limit => LIMIT, :include => [:twitter_user ] }
     if params[:q].nil? || params[:q].strip.length == 0
-      # Default query
-      find_params[:order] = 'if(follows.bounce_id is null, 1, 0), bounces.take_action_at'
+      # Had to take this out because of Postgres
+      # find_params[:order] = 'if(follows.bounce_id is null, 1, 0), bounces.take_action_at'
       common_params = {
         :joins => 'left join bounces on (follows.bounce_id=bounces.id)',
         :conditions => ['follows.user_id=?', @logged_in_user.id],
