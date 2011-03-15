@@ -1,3 +1,6 @@
-$('#follow_<%= @follow.id %> a.bounce-link')
-  .attr('href', '/unbounce?id=<%= @follow.id %>')
-  .html('Un-Bounce');
+var html = "<%= escape_javascript(render(:partial => 'search/bounce_pop_up', :locals => { :follow => @follow })) %>";
+$('#follow_<%= @follow.id %>')
+  .removeClass('no-bounce')
+  .addClass('bounce')
+  .prepend(html);
+$('#bounce-pop-out').hide();
