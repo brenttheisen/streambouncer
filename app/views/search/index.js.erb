@@ -1,5 +1,9 @@
-<% if @remove_results %>
-  $('#follow-search-results').empty();
+<% if @end_of_follows %>
+  $('#search input.offset').val('-1');
 <% end %>
-
-$('#follow-search-results').html("<%= escape_javascript(render(:partial => "results")) %>");
+var resultsHtml = "<%= escape_javascript(render(:partial => "results")) %>";
+<% if @offset == 0 %>
+  $('#search-results').html(resultsHtml);
+<% else %> 
+  $('#search-results > li.loading-more-results').replaceWith(resultsHtml);
+<% end %>

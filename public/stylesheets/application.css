@@ -34,7 +34,7 @@ a#header-logo {
 #login-widget .name {font-weight: bold; font-size: 18px;}
 #login-widget .ajax, .oauth {color: #e85900;}
 
-#follow-search-results li {}
+#search-results li {}
 
 /* Search Form */
 
@@ -46,12 +46,12 @@ a#header-logo {
 
 /* List Results */
 
-ul#follow-search-results li.odd {background:#ffece0;}
-ul#follow-search-results li.even {background:#fbddca;}
-ul#follow-search-results li {list-style: none; margin: 0px; padding: 10px; margin-bottom: 1px;}
-ul#follow-search-results li img {float: left; margin-right: 10px;}
-ul#follow-search-results li .username {color:#e85900; font-weight: bold;}
-ul#follow-search-results li .name {float: right; color:#e85900;}
-ul#follow-search-results li .last-tweet {}
-ul#follow-search-results li .last-tweet-at {}
-ul#follow-search-results li .bounce-link {}
+ul#search-results li.odd {background:#ffece0;}
+ul#search-results li.even {background:#fbddca;}
+ul#search-results li {list-style: none; margin: 0px; padding: 10px; margin-bottom: 1px;}
+ul#search-results li img {float: left; margin-right: 10px;}
+ul#search-results li .username {color:#e85900; font-weight: bold;}
+ul#search-results li .name {float: right; color:#e85900;}
+ul#search-results li .last-tweet {}
+ul#search-results li .last-tweet-at {}
+ul#search-results li .bounce-link {}

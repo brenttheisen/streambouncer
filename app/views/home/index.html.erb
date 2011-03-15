@@ -16,10 +16,11 @@
 
 <form id="search" class="ajax" action="/search" method="get">
 		<input class="search-box" name="q" type="text" autocomplete="off" />
+		<input class="offset" name="o" type="hidden" <% if @end_of_follows %>value="-1"<% end %> />
 		<input class="reset" type="reset" value="Clear" />
 		<div class="clear"></div>
 </form>
 
-<ul id="follow-search-results">
+<ul id="search-results">
   <%= render(:partial => "search/results") %>
 </ul>
