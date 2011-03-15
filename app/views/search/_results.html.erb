@@ -6,14 +6,15 @@
     <% if follow.bounce.nil? %>
       <div class="pop-out" style="display: none;">
         <div class="calendar"></div>
-        <a class="bounce-link ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
+        <a class="bounce-link button bounce ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
       </div>
     <% else %>
       <div class="pop-out">
         <div class="calendar"></div>
-        <a class="bounce-link ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
+        <a class="bounce-link button un-bounce ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
       </div>
     <% end %>
+    <div class="clear"></div>
     <img src="<%= twitter_user.picture_url %>" />
     <div class="name"><%= twitter_user.name %></div>
     <div class="username"><%= twitter_user.username %></div>
