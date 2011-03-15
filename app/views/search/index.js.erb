@@ -1,0 +1,5 @@
+<% if @remove_results %>
+  $('#follow-search-results').empty();
+<% end %>
+
+$('#follow-search-results').html("<%= escape_javascript( render(:partial => "results") ) %>");
