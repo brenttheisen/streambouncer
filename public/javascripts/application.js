@@ -1,6 +1,6 @@
 $(function() {
 	
-	$('#search input[name="q"]').keypress(function(e) {
+	$('#search input[name="q"]').keydown(function(e) {
 		var lastTimerID = $(this).data('autoCompleteTimerID');
 		if(lastTimerID != undefined)
 			clearTimeout(lastTimerID);
