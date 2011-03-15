@@ -54,7 +54,7 @@ $(function() {
     			.css({ 
     				display: 'block',
     				top: $(this).position().top, 
-    				left: $(this).width() + $(this).position().left
+    				left: $(this).width() + 20 // Total hack, will figure out later
     			});
     	},
     	mouseout: function(e) {
