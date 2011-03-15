@@ -16,4 +16,10 @@ if FileTest.exists?(EXTERNAL_CONFIG_FILE_PATH)
   end
   
   StreamBouncer::Application.config = config
+else
+  
+  StreamBouncer::Application.config = {
+    'twitter_consumer_key' => ENV['TWITTER_CONSUMER_KEY'],
+    'twitter_consumer_secret' => ENV['TWITTER_CONSUMER_SECRET']
+  }
 end
