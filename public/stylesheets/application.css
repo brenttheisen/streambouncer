@@ -45,6 +45,7 @@ a#header-logo {
 #search input.reset:hover {background: #eda97e; color: #FFF; cursor: pointer; border: 1px solid #FFF;}
 
 #search input.search-box, #search input.reset {color: #e85900; font-size: 16px;}
+#search input.search-box.placeholder {color: #999;}
 
 /* List Results */
 

@@ -37,11 +37,13 @@ $(function() {
 		.data('placeholderVal', $('#search input.search-box').val())
 		.focus(function(e) {
 			if($(this).val() == $(this).data('placeholderVal')) {
+				$(this).removeClass('placeholder');
 				$(this).val('');
 			}
 		})
 		.blur(function(e) {
 			if($(this).val() == '') {
+				$(this).addClass('placeholder');
 				$(this).val($(this).data('placeholderVal'));
 			}
 		});
