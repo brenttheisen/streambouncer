@@ -1,0 +1,11 @@
+
+twitter_consumer_key: <CONSUMER_KEY_HERE>
+twitter_consumer_secret: <CONSUMER_SECRET_HERE>
+
+
+development:
+
+test:
+
+production:
+

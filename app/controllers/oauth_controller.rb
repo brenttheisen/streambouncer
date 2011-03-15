@@ -1,14 +1,11 @@
 class OauthController < ApplicationController
   
-  CONSUMER_KEY = 'HtjH1S6zcrLQcxUv8iKJ9g'
-  CONSUMER_SECRET = 'RIYCjfA3ChoIA29JTX9nZ2IVUUM9rqiCnndnl1ipU'
-  
   CALLBACK_PATH = '/oauth/authorized'
   
   def twitter
     client = TwitterOAuth::Client.new(
-        :consumer_key => CONSUMER_KEY,
-        :consumer_secret => CONSUMER_SECRET
+    	:consumer_key => StreamBouncer::Application.config['twitter_consumer_key'],
+    	:consumer_secret => StreamBouncer::Application.config['twitter_consumer_secret']
     )
     request_token = client.request_token(:oauth_callback => "http://#{self.host_port_name}#{CALLBACK_PATH}")
     #:oauth_callback required for web apps, since oauth gem by default force PIN-based flow 
@@ -26,8 +23,8 @@ class OauthController < ApplicationController
   def close_window
     request_token = session[:twitter_request_token]
     client = TwitterOAuth::Client.new(
-        :consumer_key => CONSUMER_KEY,
-        :consumer_secret => CONSUMER_SECRET
+    	:consumer_key => StreamBouncer::Application.config['twitter_consumer_key'],
+	    :consumer_secret => StreamBouncer::Application.config['twitter_consumer_secret']
     )
     access_token = client.authorize(
       request_token.token,
