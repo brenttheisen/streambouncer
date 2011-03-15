@@ -60,9 +60,8 @@ ul#search-results li .last-tweet {}
 ul#search-results li .last-tweet-at {color: #999;}
 ul#search-results li .bounce-link {}
 ul#search-results li .tweet-container {margin-left: 58px;width: 382px;}
-ul#search-results li .pop-out {position: absolute; left: 460px; height: auto; width: 200px; background: #fffcd9; padding: 10px; top: 0px;}
 
-div#bounce-pop-out {display: none; position: absolute; z-index: 100;}
+div#bounce-pop-out {display: none; position: absolute; z-index: 100; padding: 10px;  background: #fffcd9; width: 160px;}
 
 /* Buttons */
 .button {padding: 5px 10px; font-size: 12px; cursor: pointer; float: right; border: 1px solid #FFF; background: #e85900; color: #FFF;}
