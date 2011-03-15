@@ -1,12 +1,16 @@
 $(function() {
 	
-	$('#search input[name="q"]').keydown(function(e) {
+	$('#search input.search-box').keydown(function(e) {
 		var lastTimerID = $(this).data('autoCompleteTimerID');
 		if(lastTimerID != undefined)
 			clearTimeout(lastTimerID);
 		
 		var timerID = setTimeout(function(){
-			$('#search').submit();
+			var searchBox = $('#search input.search-box');
+			var lastVal = searchBox.data('lastVal');
+			if(lastVal == undefined || lastVal != searchBox.val())
+				$('#search').submit();
+			searchBox.data('lastVal', searchBox.val());
 		}, 200);
 		$(this).data('autoCompleteTimerID', timerID);
 	});
