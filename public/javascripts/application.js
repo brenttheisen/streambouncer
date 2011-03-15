@@ -1,5 +1,11 @@
 $(function() {
 	
+    $('form.ajax').submit(function(e) {
+        e.preventDefault();
+        
+        $.ajax({ url: $(this).attr('action'), type: $(this).attr('method'), data: $(this).serialize(), dataType: 'script' });
+    });
+	
 	$('#search input.search-box').keydown(function(e) {
 		var lastTimerID = $(this).data('autoCompleteTimerID');
 		if(lastTimerID != undefined)
@@ -17,6 +23,8 @@ $(function() {
 		$(this).data('autoCompleteTimerID', timerID);
 	});
 	
+	$('#search input.search-box').focus();
+	
 	$('#search input.reset').click(function(e) {
 		$('#search input.search-box').val('');
 		$('#search input.offset').val('');
@@ -28,12 +36,6 @@ $(function() {
 		
 		window.open($(this).attr('href'), "oauthWindow", "width=800,height=450,scrollbars=no,dependent=no");
 	});
-	
-    $('form.ajax').submit(function(e) {
-        e.preventDefault();
-        
-        $.ajax({ url: $(this).attr('action'), type: $(this).attr('method'), data: $(this).serialize(), dataType: 'script' });
-    });
     
     $('a.ajax').click(function(e) {
         e. preventDefault();
