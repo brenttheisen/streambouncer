@@ -30,8 +30,8 @@ a#header-logo {
 	padding: 1px;
 }
 
-#login-widget .username {display: none;}
-#login-widget .name {font-weight: bold; font-size: 18px;}
+#login-widget .username {font-weight: bold; font-size: 18px;}
+#login-widget .name {display:none;}
 #login-widget .ajax, .oauth {color: #e85900;}
 
 #search-results li {}
