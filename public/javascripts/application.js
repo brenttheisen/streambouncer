@@ -11,6 +11,11 @@ $(function() {
 		$(this).data('autoCompleteTimerID', timerID);
 	});
 	
+	$('#search input.reset').click(function(e) {
+		$('#search input.search-box').val('');
+		$('#search').submit();
+	});
+	
 	$('a.oauth').click(function (e) {
 		e.preventDefault();
 		
