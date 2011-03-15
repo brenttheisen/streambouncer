@@ -37,11 +37,24 @@ $(function() {
 		window.open($(this).attr('href'), "oauthWindow", "width=800,height=450,scrollbars=no,dependent=no");
 	});
     
-    $('a.ajax').click(function(e) {
+    $('a.ajax').live('click', function(e) {
         e. preventDefault();
         
         $.ajax({ url: $(this).attr('href'), dataType: 'script'});
     });
+    
+    $('#search-results > li.no-bounce').hover(
+    	function(e) {
+    		$(this).find('div.pop-out').show();
+    	},
+    	function(e) {
+    		$(this).find('div.pop-out').hide();
+    	}
+	);
+    
+    $('#search-results > li > div.pop-out > div.calendar').each(function() {
+    	$(this).datepicker();
+    })
     
     $(window).scroll(function(e) {
     	var offset = $('#search input.offset').val();
