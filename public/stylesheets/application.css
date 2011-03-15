@@ -62,6 +62,8 @@ ul#search-results li .bounce-link {}
 ul#search-results li .tweet-container {margin-left: 58px;width: 382px;}
 ul#search-results li .pop-out {position: absolute; left: 460px; height: auto; width: 200px; background: #fffcd9; padding: 10px; top: 0px;}
 
+div#bounce-pop-out {display: none; z-index: 100;}
+
 /* Buttons */
 .button {padding: 5px 10px; font-size: 12px; cursor: pointer; float: right; border: 1px solid #FFF; background: #e85900; color: #FFF;}
 .button:hover {background: #ff6200; color: #FFF;}
