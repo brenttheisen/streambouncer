@@ -53,7 +53,6 @@ $(function() {
     		$('#bounce-pop-out')
     			.css({ 
     				display: 'block',
-    				position: 'absolute', 
     				top: $(this).position().top, 
     				left: $(this).width() + $(this).position().left
     			});
