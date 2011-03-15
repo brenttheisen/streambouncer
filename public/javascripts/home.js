@@ -48,16 +48,23 @@ $(function() {
 	});
 
     
-    $('#search-results > li.no-bounce').hover(
-    	function(e) {
-    		$(this).find('div.pop-out').show();
+    $('#search-results > li.no-bounce').live({
+    	mouseover: function(e) {
+    		$('#bounce-pop-out')
+    			.css({ 
+    				display: 'block',
+    				position: 'absolute', 
+    				top: $(this).position().top, 
+    				left: $(this).width() + $(this).position().left
+    			});
     	},
-    	function(e) {
-    		$(this).find('div.pop-out').hide();
+    	mouseout: function(e) {
+//    		$('#bounce-pop-out')
+//   			.css({ display: 'none' });
     	}
-	);
+    });
     
-    $('#search-results > li > div.pop-out > div.calendar').each(function() {
+    $('#bounce-pop-out div.calendar').each(function() {
     	$(this).datepicker();
     })
     

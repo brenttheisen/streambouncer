@@ -3,15 +3,10 @@
     twitter_user = follow.twitter_user 
 %>
   <li id="follow_<%= follow.id %>" class="<%= follow.bounce.nil? ? 'no-bounce' : 'bounce' %> <%= (index +2) % 2 == 0 ? 'even' : 'odd' %>">
-    <% if follow.bounce.nil? %>
-      <div class="pop-out" style="display: none;">
-        <div class="calendar"></div>
-        <a class="bounce-link button bounce ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
-      </div>
-    <% else %>
+    <% unless follow.bounce.nil? %>
       <div class="pop-out">
-        <div class="calendar"></div>
-        <a class="bounce-link button un-bounce ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
+        <div class="time-until-action">Auto-following in <%= distance_of_time_in_words(follow.bounce.take_action_at, Time.now) %></div>
+        <a class="bounce-link button un-bounce ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Cancel</a>
       </div>
     <% end %>
     <div class="clear"></div>
