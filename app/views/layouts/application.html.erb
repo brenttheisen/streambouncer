@@ -2,12 +2,14 @@
 <html>
 <head>
   <title>stream bouncer</title>
-  <%= stylesheet_link_tag :all %>
+  
+  <%= stylesheet_link_tag '960' %>
+  <%= stylesheet_link_tag 'reset' %>
+  <%= stylesheet_link_tag 'text' %>
+  <%= stylesheet_link_tag 'application' %>
+  
   <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js' %>
-  <%= javascript_include_tag '960' %>
-  <%= javascript_include_tag 'reset' %>
-  <%= javascript_include_tag 'text' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
 </head>
 <body>
