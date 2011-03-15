@@ -57,3 +57,4 @@ ul#search-results li .name {float: right; color:#e85900;}
 ul#search-results li .last-tweet {}
 ul#search-results li .last-tweet-at {color: #999;}
 ul#search-results li .bounce-link {}
+ul#search-results li .tweet-container {display: block; width: 382px;}

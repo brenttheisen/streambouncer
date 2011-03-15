@@ -6,13 +6,14 @@
     <img src="<%= twitter_user.picture_url %>" />
     <div class="name"><%= twitter_user.name %></div>
     <div class="username"><%= twitter_user.username %></div>
-    <div class="last-tweet"><%= twitter_user.last_tweet %></div>
-    <div class="last-tweet-at"><%= twitter_user.last_tweet_at %></div>
+    <div class="tweet-container">
+      <div class="last-tweet"><%= twitter_user.last_tweet %></div>
+      <div class="last-tweet-at"><%= distance_of_time_in_words(twitter_user.last_tweet_at, Time.now) %> ago</div>
+    </div>
     <% if follow.bounce.nil? %>
       <a class="bounce-link ajax" href="/bounce?id=<%= follow.id %>">Bounce</a>
     <% else %>
       <a class="bounce-link ajax" href="/unbounce?id=<%= follow.id %>_<%= follow.bounce.id %>">Un-Bounce</a>
     <% end %>
-    
   </li>
 <% } %>
