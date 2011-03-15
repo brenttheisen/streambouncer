@@ -1,3 +1,4 @@
-$('#follow_<%= @follow.id %> a.bounce-link')
-  .attr('href', '/bounce?id=<%= @follow.id %>')
-  .html('Bounce');
+$('#follow_<%= @follow.id %>')
+  .removeClass('bounce')
+  .addClass('no-bounce')
+  .find('div.pop-out').remove();
