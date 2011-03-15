@@ -46,7 +46,6 @@ $(function() {
 		$('#search input.offset').val('');
 		$('#search').submit();
 	});
-
     
     $('#search-results > li.no-bounce').live({
     	mouseover: function(e) {
@@ -55,19 +54,26 @@ $(function() {
     				display: 'block',
     				top: $(this).position().top, 
     				left: $(this).width() + 20 // Total hack, will figure out later
-    			})
-    			.find('a.bounce-link').attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''))
-    			
+    			});
+    		$('#bounce-toggle-link')
+    			.attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''));
     	},
     	mouseout: function(e) {
-//    		$('#bounce-pop-out')
-//   			.css({ display: 'none' });
+    		// $('#bounce-pop-out')
+    		// 	.css({ display: 'none' });
     	}
     });
     
-    $('#bounce-pop-out div.calendar').each(function() {
+    $('#bounce-calendar').each(function() {
     	$(this).datepicker();
     })
+    
+    $('#bounce-toggle-link').click(function(e) {
+    	e.preventDefault();
+    	
+    	var url = $(this).attr('href') + '&t=' + String($('#bounce-calendar').datepicker('getDate').getTime() / 1000);
+        $.ajax({ url: url, type: 'get', dataType: 'script' });
+    });
     
     $(window).scroll(function(e) {
     	var offset = $('#search input.offset').val();
