@@ -16,7 +16,7 @@
 <% end %>
 
 <form id="search" class="ajax" action="/search" method="get">
-		<input class="search-box" name="q" type="text" autocomplete="off" />
+		<input class="search-box" name="q" type="text" autocomplete="off" value="Search your followers..." />
 		<input class="offset" name="o" type="hidden" <% if @end_of_follows %>value="-1"<% end %> />
 		<input class="reset" type="reset" value="Clear" />
 		<div class="clear"></div>

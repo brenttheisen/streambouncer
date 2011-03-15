@@ -1,29 +1,50 @@
 $(function() {
 	
-    $('form.ajax').submit(function(e) {
+/*    $('form.ajax').submit(function(e) {
         e.preventDefault();
         
         $.ajax({ url: $(this).attr('action'), type: $(this).attr('method'), data: $(this).serialize(), dataType: 'script' });
     });
-	
-	$('#search input.search-box').keydown(function(e) {
-		var lastTimerID = $(this).data('autoCompleteTimerID');
-		if(lastTimerID != undefined)
-			clearTimeout(lastTimerID);
+*/  
+	$('#search').submit(function(e) {
+		e.preventDefault();
 		
-		var timerID = setTimeout(function(){
-			var searchBox = $('#search input.search-box');
-			var lastVal = searchBox.data('lastVal');
-			if(lastVal == undefined || lastVal != searchBox.val()) {
-				$('#search input.offset').val('');
-				$('#search').submit();
-			}
-			searchBox.data('lastVal', searchBox.val());
-		}, 200);
-		$(this).data('autoCompleteTimerID', timerID);
+		var data = { o: $(this).find('input.offset').val() };
+		var searchBox = $(this).find('input.search-box');
+		if(searchBox.val() != searchBox.data('placeholderVal'))
+			data['q'] = searchBox.val();
+		
+        $.ajax({ url: $(this).attr('action'), type: $(this).attr('method'), data: data, dataType: 'script' });
 	});
 	
-	$('#search input.search-box').focus();
+	$('#search input.search-box')
+		.keydown(function(e) {
+			var lastTimerID = $(this).data('autoCompleteTimerID');
+			if(lastTimerID != undefined)
+				clearTimeout(lastTimerID);
+			
+			var timerID = setTimeout(function(){
+				var searchBox = $('#search input.search-box');
+				var lastVal = searchBox.data('lastVal');
+				if(lastVal == undefined || lastVal != searchBox.val()) {
+					$('#search input.offset').val('');
+					$('#search').submit();
+				}
+				searchBox.data('lastVal', searchBox.val());
+			}, 200);
+			$(this).data('autoCompleteTimerID', timerID);
+		})
+		.data('placeholderVal', $('#search input.search-box').val())
+		.focus(function(e) {
+			if($(this).val() == $(this).data('placeholderVal')) {
+				$(this).val('');
+			}
+		})
+		.blur(function(e) {
+			if($(this).val() == '') {
+				$(this).val($(this).data('placeholderVal'));
+			}
+		});
 	
 	$('#search input.reset').click(function(e) {
 		$('#search input.search-box').val('');
