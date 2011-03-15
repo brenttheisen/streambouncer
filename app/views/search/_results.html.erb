@@ -1,8 +1,8 @@
 <% 
-  @follows.each { |follow|
+  @follows.each_with_index { |follow, index|
     twitter_user = follow.twitter_user 
 %>
-  <li id="follow_<%= follow.id %>">
+  <li id="follow_<%= follow.id %>" class="<%= (index +2) % 2 == 0 ? 'even' : 'odd' %>">
 		<div class="pop-out">Calendar Goes Here</div>
     <img src="<%= twitter_user.picture_url %>" />
     <div class="name"><%= twitter_user.name %></div>
