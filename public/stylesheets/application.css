@@ -51,9 +51,9 @@ a#header-logo {
 ul#search-results li.odd {background:#ffece0;}
 ul#search-results li.even {background:#fbddca;}
 ul#search-results li {list-style: none; margin: 0px; padding: 10px; margin-bottom: 1px;}
-ul#search-results li img {float: left; margin-right: 10px;}
+ul#search-results li img {float: left; margin-right: 10px; width: 48px; height: 48px;}
 ul#search-results li .username {color:#e85900; font-weight: bold;}
 ul#search-results li .name {float: right; color:#e85900;}
 ul#search-results li .last-tweet {}
-ul#search-results li .last-tweet-at {}
+ul#search-results li .last-tweet-at {color: #999;}
 ul#search-results li .bounce-link {}
