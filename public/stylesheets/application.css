@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
 
+p { color: #555; font: 1.2em/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; }
+	
 a {color: #e85900; text-decoration: none;}
 a:hover {color: #e08d59;}
 
