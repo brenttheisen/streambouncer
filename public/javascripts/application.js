@@ -1,5 +1,16 @@
 $(function() {
 	
+	$('#search input[name="q"]').keypress(function(e) {
+		var lastTimerID = $(this).data('autoCompleteTimerID');
+		if(lastTimerID != undefined)
+			clearTimeout(lastTimerID);
+		
+		var timerID = setTimeout(function(){
+			$('#search').submit();
+		}, 200);
+		$(this).data('autoCompleteTimerID', timerID);
+	});
+	
 	$('a.oauth').click(function (e) {
 		e.preventDefault();
 		

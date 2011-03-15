@@ -14,12 +14,10 @@
   </ul>
 <% end %>
 
-<form class="ajax" action="/search">
-	<div id="search">
+<form id="search" class="ajax" action="/search" method="get">
 		<input class="search-box" name="q" type="text" />
 		<input class="reset" type="reset" value="Clear" />
 		<div class="clear"></div>
-	</div>
 </form>
 
 <ul id="follow-search-results">
