@@ -10,32 +10,55 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110312001204) do
+ActiveRecord::Schema.define(:version => 20110315234949) do
 
   create_table "bounces", :force => true do |t|
-    t.boolean  "active",          :default => true
+    t.boolean  "active",            :default => true
     t.boolean  "hide_past_bounces", :default => false
-    t.datetime "take_action_at", :null => false
+    t.datetime "take_action_at",                       :null => false
     t.datetime "executed_at"
     t.datetime "canceled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.text     "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "follows", :force => true do |t|
-    t.integer  "user_id",         :null => false
-    t.integer  "twitter_user_id", :null => false
-    t.boolean  "active", :default => true
+    t.integer  "user_id",                           :null => false
+    t.integer  "twitter_user_id",                   :null => false
+    t.boolean  "active",          :default => true
     t.integer  "bounce_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
   create_table "twitter_users", :force => true do |t|
-    t.integer  "twitter_id", :null => false
-    t.string   "username", :null => false
-    t.string   "name", :null => false
-    t.string   "picture_url", :null => false
+    t.integer  "twitter_id",    :null => false
+    t.string   "username",      :null => false
+    t.string   "name",          :null => false
+    t.string   "picture_url",   :null => false
     t.string   "last_tweet"
     t.datetime "last_tweet_at"
     t.integer  "friends_count"
@@ -46,8 +69,8 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
   add_index "twitter_users", ["twitter_id"], :name => "index_twitter_users_on_twitter_id", :unique => true
 
   create_table "users", :force => true do |t|
-    t.integer  "twitter_user_id", :null => false
-    t.string   "twitter_access_token", :null => false
+    t.integer  "twitter_user_id",             :null => false
+    t.string   "twitter_access_token",        :null => false
     t.string   "twitter_access_token_secret", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,13 +78,4 @@ ActiveRecord::Schema.define(:version => 20110312001204) do
 
   add_index "users", ["twitter_user_id"], :name => "index_users_on_twitter_user_id", :unique => true
 
-
-  create_table "sessions", :force => true do |t| 
-    t.string   "session_id", :null => false 
-    t.text     "data" 
-    t.datetime "created_at" 
-    t.datetime "updated_at" 
-  end 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id" 
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at" 
 end
