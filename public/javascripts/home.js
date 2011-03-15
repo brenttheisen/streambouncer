@@ -55,7 +55,9 @@ $(function() {
     				display: 'block',
     				top: $(this).position().top, 
     				left: $(this).width() + 20 // Total hack, will figure out later
-    			});
+    			})
+    			.find('a.bounce-link').attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''))
+    			
     	},
     	mouseout: function(e) {
 //    		$('#bounce-pop-out')
