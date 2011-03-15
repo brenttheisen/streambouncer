@@ -40,7 +40,9 @@ a#header-logo {
 
 #search {background: #e85900; padding: 10px; margin-bottom: 1px;}
 #search input.search-box {border: none; background: #FFF; padding: 5px; width: 360px; float: left;}
-#search input.reset {display: block; float: right; width: 60px; background: #FFF; border: none; height: 30px;}
+#search input.search-box:focus {background: #f7ede7;}
+#search input.reset {display: block; float: right; width: 60px; background: #FFF; border: none; height: 30px; border: 1px solid #FFF;}
+#search input.reset:hover {background: #eda97e; color: #FFF; cursor: pointer; border: 1px solid #FFF;}
 
 #search input.search-box, #search input.reset {color: #e85900; font-size: 16px;}
 
@@ -49,9 +51,9 @@ a#header-logo {
 ul#follow-search-results li.odd {background:#ffece0;}
 ul#follow-search-results li.even {background:#fbddca;}
 ul#follow-search-results li {list-style: none; margin: 0px; padding: 10px; margin-bottom: 1px;}
-ul#follow-search-results li img {float: left; margin-right: 10px;}
+ul#follow-search-results li img {float: left; margin-right: 10px; width: 48px; height: 48px;}
 ul#follow-search-results li .username {color:#e85900; font-weight: bold;}
 ul#follow-search-results li .name {float: right; color:#e85900;}
 ul#follow-search-results li .last-tweet {}
-ul#follow-search-results li .last-tweet-at {}
+ul#follow-search-results li .last-tweet-at {color: #999;}
 ul#follow-search-results li .bounce-link {}
