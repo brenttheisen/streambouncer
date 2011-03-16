@@ -3,7 +3,7 @@
 <p>Right now we are getting your follower information from Twitter. This is a one time only process.</p>
 
 <div id="progress-bar" <% if @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>style="display: none;"<% end %>></div>
-<div>
+<p>
   <span>Status:</span>
   <span id="progress-description">
     <% if @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>
@@ -12,7 +12,7 @@
       <%= @logged_in_user.update_friends_progress %>% complete
     <% end %>
   </span>
-</div>
+</p>
 
 <script type="text/javascript">
   $(function() {
