@@ -46,22 +46,7 @@ class OauthController < ApplicationController
       @logged_in_user.twitter_user.update_from_response twitter_info
       @logged_in_user.save
 
-      twitter_user_friend_ids = []
-      friends = client.all_friends
-      friends.each { |user| 
-        twitter_user = TwitterUser.where(:twitter_id => user['id']).first
-        twitter_user = TwitterUser.new if twitter_user.nil?
-        twitter_user.update_from_response user
-        twitter_user.save
-        
-        if Follow.where(:user_id => @logged_in_user.id, :twitter_user_id => twitter_user.id).count == 0
-          Follow.new(:user_id => @logged_in_user.id, :twitter_user_id => twitter_user.id).save
-        end
-        
-        twitter_user_friend_ids << twitter_user.id
-      }
-      
-      Follow.update_all('active=true', [ 'twitter_user_id not in(?)', twitter_user_friend_ids ])
+      Delayed::Job.enqueue(@logged_in_user)
     else
       # Tell them auth failed
     end

@@ -5,7 +5,7 @@ class AddUserCookieField < ActiveRecord::Migration
   end
 
   def self.down
-    drop_column :users, :cookie
+    remove_column :users, :cookie
     remove_index :users, :cookie
   end
 end

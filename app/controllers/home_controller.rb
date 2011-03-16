@@ -5,6 +5,25 @@ class HomeController < ApplicationController
       render :action => 'index_not_logged_in'
       return
     end
+    
+    if @logged_in_user.updated_friends_at.nil?
+      if @logged_in_user.update_friends_progress.nil?
+        @logged_in_user.update_friends_progress = 0
+        @logged_in_user.save
+  
+        Delayed::Job.enqueue(@logged_in_user)
+      end
+      
+      render :action => 'first_time_friend_update'
+      return
+    end
+    
+    if Time.now - @logged_in_user.updated_friends_at > (60 * 60 * 1)
+      @logged_in_user.updated_friends_progress = 0
+      @logged_in_user.save
+
+      Delayed::Job.enqueue(@logged_in_user)
+    end
 
     @past_bounces = Bounce.where(['hide_past_bounces=? and executed_at is not null', false]).order('executed_at desc').limit(3)
       
