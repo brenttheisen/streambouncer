@@ -44,6 +44,7 @@ class OauthController < ApplicationController
       
       @logged_in_user.twitter_user = TwitterUser.new if @logged_in_user.twitter_user.nil? 
       @logged_in_user.twitter_user.update_from_response twitter_info
+      #
       @logged_in_user.save
 
       twitter_user_friend_ids = []
