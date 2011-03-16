@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   
   def get_user_from_session
     @logged_in_user = session[:logged_in_user] unless session[:logged_in_user].nil?
-    @logged_in_user.reload
+    @logged_in_user.reload unless @logged_in_user.nil?
   end
   
   def get_user_from_cookie
