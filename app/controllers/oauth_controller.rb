@@ -45,8 +45,6 @@ class OauthController < ApplicationController
       @logged_in_user.twitter_user = TwitterUser.where(:twitter_id => twitter_info['id']).first || TwitterUser.new
       @logged_in_user.twitter_user.update_from_response twitter_info
       @logged_in_user.save
-
-      Delayed::Job.enqueue(@logged_in_user)
     else
       # Tell them auth failed
     end

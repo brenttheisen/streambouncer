@@ -1,0 +1,10 @@
+<h1>Woah, you are following a lot of people<h1>
+
+<p>
+Scanning your friends requires a lot of computing resources that costs us money. Because of this we can not accept new users who have more than 
+<%= HomeController::FRIENDS_COUNT_LIMIT %> friends and you currently have <%= @logged_in_user.twitter_user.friends_count%>.
+</p>
+
+<p>
+Please contact us <a href="http://twitter.com/streambouncer">@streambouncer</a> if you would like to yell at us about this limitation.
+</p>

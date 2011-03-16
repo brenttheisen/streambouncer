@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   
+  FRIENDS_COUNT_LIMIT = 2
+  
   def index
     if @logged_in_user.nil?
       render :action => 'index_not_logged_in'
@@ -8,6 +10,11 @@ class HomeController < ApplicationController
     
     if @logged_in_user.updated_friends_at.nil?
       if @logged_in_user.update_friends_progress.nil?
+        if @logged_in_user.twitter_user.friends_count > FRIENDS_COUNT_LIMIT
+          render :action => 'too_many_follows'
+          return
+        end
+        
         @logged_in_user.update_friends_progress = 0
         @logged_in_user.save
   
