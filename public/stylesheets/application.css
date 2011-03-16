@@ -58,7 +58,6 @@ ul#search-results li .username {color:#e85900; font-weight: bold;}
 ul#search-results li .name {float: right; color:#e85900;}
 ul#search-results li .last-tweet {}
 ul#search-results li .last-tweet-at {color: #999;}
-ul#search-results li .bounce-link {}
 ul#search-results li .tweet-container {margin-left: 58px;width: 382px;}
 
 div#bounce-pop-out {display: none; z-index: 100;}
