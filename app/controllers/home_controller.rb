@@ -26,7 +26,7 @@ class HomeController < ApplicationController
     end
     
     if Time.now - @logged_in_user.updated_friends_at > (60 * 60 * 1)
-      @logged_in_user.updated_friends_progress = 0
+      @logged_in_user.update_friends_progress = 0
       @logged_in_user.save
 
       Delayed::Job.enqueue(@logged_in_user)
