@@ -64,7 +64,7 @@ $(function() {
     	}
     });
     
-    $('#bounce-calendar').datepicker();
+    $('#bounce-calendar').datepicker({ minDate: (new Date(new Date().getTime() + 1000 * 60 * 60 * 24)) });
     
     $('#bounce-toggle-link').click(function(e) {
     	e.preventDefault();
