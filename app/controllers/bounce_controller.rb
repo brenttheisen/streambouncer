@@ -4,7 +4,7 @@ class BounceController < ApplicationController
     @bounce = @follow.bounce
     @bounce ||= Bounce.new
     
-    logger.info "Unfollowing #{@follow.twitter_user.username} for #{@logged_in_user.twitter_user.username}"
+    logger.info "Unfollowing #{@follow.twitter_user.username} (#{@follow.twitter_user.twitter_id}) for #{@logged_in_user.twitter_user.username} (#{@logged_in_user.twitter_user.twitter_id})"
     client = @logged_in_user.twitter_client
     client.unfriend(@follow.twitter_user.twitter_id)
     
