@@ -56,7 +56,7 @@ ul#search-results li.active {background: #fffcd9; border-left: 1px solid #dfb092
 ul#search-results li img {float: left; margin-right: 10px; width: 48px; height: 48px;}
 ul#search-results li .username {color:#e85900; font-weight: bold;}
 ul#search-results li .name {float: right; color:#e85900;}
-ul#search-results li .last-tweet {}
+ul#search-results li .last-tweet {color: #333;}
 ul#search-results li .last-tweet-at {color: #999;}
 ul#search-results li .tweet-container {margin-left: 58px;width: 382px;}
 
