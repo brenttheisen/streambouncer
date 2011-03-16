@@ -17,11 +17,15 @@
 </div>
 
 <script type="text/javascript">
-  <% if @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>
-    $("#progress-bar").progressbar({ value: <%= @logged_in_user.update_friends_progress %> });
-  <% end %> 
-  
-  setInterval(function() {
-      $.ajax({ url: '/update_friends_progress' });
-  }, 5000);
+  $(function() {
+    <% unless @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>
+      $("#progress-bar")
+        .show()
+        .progressbar({ value: <%= @logged_in_user.update_friends_progress %> });
+    <% end %> 
+    
+    setInterval(function() {
+        $.ajax({ url: '/update_friends_progress' });
+    }, 3000);
+  });
 </script>

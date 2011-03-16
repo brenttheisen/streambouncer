@@ -8,7 +8,8 @@
 <% elsif @logged_in_user.update_friends_progress > 0 %>
   $("#progress-bar")
     .show()
-    .progressbar({ value: 100 });
+    .progressbar({ value: <%= @logged_in_user.update_friends_progress %> });
+    
   $('#progress-description').html('<%= @logged_in_user.update_friends_progress %>% complete');
 <% end %>  
   
