@@ -7,15 +7,11 @@ class Bounce < ActiveRecord::Base
     self.reload
     
     follow = self.follow
-    user = follow.user
-    client = TwitterOAuth::Client.new(
-      :consumer_key => StreamBouncer::Application.config['twitter_consumer_key'],
-      :consumer_secret => StreamBouncer::Application.config['twitter_consumer_secret'],
-      :token => user.twitter_access_token, 
-      :secret => user.twitter_access_token_secret
-    )
     
+    user = follow.user
     twitter_user = follow.twitter_user
+
+    client = user.twitter_client
     client.friend(twitter_user.twitter_id)
     
     follow.bounce_id = nil

@@ -3,22 +3,13 @@ class User < ActiveRecord::Base
   has_many :follows
   has_many :followed_twitter_users, { :through => :follows, :source => :twitter_user, :class_name => 'TwitterUser' }
   
-  def default_search_twitter_users
-    
-    # Need to come back to this code
-    
-#    TwitterUser.
-#      joins(
-#        [
-#          'join follows on (follows.twitter_user_id=twitter_user.id)',
-#          'left join users on (users.twitter_user_id=twitter_users.id)',
-#        ]
-#      ). 
-#      conditions (['follows.user_id', self.id])
-#      
-#      :conditions => [],
-#      :group
-#    )
+  def twitter_client
+    TwitterOAuth::Client.new(
+      :consumer_key => StreamBouncer::Application.config['twitter_consumer_key'],
+      :consumer_secret => StreamBouncer::Application.config['twitter_consumer_secret'],
+      :token => self.twitter_access_token, 
+      :secret => self.twitter_access_token_secret
+    )
   end
     
 end
