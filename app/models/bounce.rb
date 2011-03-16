@@ -11,6 +11,7 @@ class Bounce < ActiveRecord::Base
     user = follow.user
     twitter_user = follow.twitter_user
 
+    logger.info "Refollowing #{@follow.twitter_user.username} for #{@logged_in_user.twitter_user.username}"
     client = user.twitter_client
     client.friend(twitter_user.twitter_id)
     

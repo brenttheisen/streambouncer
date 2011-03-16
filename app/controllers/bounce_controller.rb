@@ -4,14 +4,15 @@ class BounceController < ApplicationController
     @bounce = @follow.bounce
     @bounce ||= Bounce.new
     
+    logger.info "Unfollowing #{@follow.twitter_user.username} for #{@logged_in_user.twitter_user.username}"
     client = @logged_in_user.twitter_client
     client.unfriend(@follow.twitter_user.twitter_id)
     
-    @bounce.take_action_at = 5.minutes.from_now.getutc
-    # @bounce.take_action_at = Time.at(params[:t].to_i)
+    # @bounce.take_action_at = 5.minutes.from_now.getutc
+    @bounce.take_action_at = Time.at(params[:t].to_i)
     @bounce.save
     
-    Delayed::Job.enqueue(@bounce, @bounce.take_action_at)
+    Delayed::Job.enqueue(@bounce, :run_at => @bounce.take_action_at)
 
     @follow.bounce = @bounce
     @follow.save
