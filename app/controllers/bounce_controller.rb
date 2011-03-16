@@ -6,7 +6,8 @@ class BounceController < ApplicationController
     
     logger.info "Unfollowing #{@follow.twitter_user.username} (#{@follow.twitter_user.twitter_id}) for #{@logged_in_user.twitter_user.username} (#{@logged_in_user.twitter_user.twitter_id})"
     client = @logged_in_user.twitter_client
-    client.unfriend(@follow.twitter_user.twitter_id)
+    response = client.unfriend(@follow.twitter_user.twitter_id)
+    logger.info "Unfollow response... #{response.to_json}"
     
     # @bounce.take_action_at = 5.minutes.from_now.getutc
     @bounce.take_action_at = Time.at(params[:t].to_i)
