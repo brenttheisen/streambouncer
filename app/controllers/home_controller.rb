@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  FRIENDS_COUNT_LIMIT = 2
+  FRIENDS_COUNT_LIMIT = 2000
   
   def index
     if @logged_in_user.nil?
