@@ -5,7 +5,7 @@ class BounceController < ApplicationController
     @bounce ||= Bounce.new
     
     # Take action on the bounce in 5 minutes
-    @bounce.take_action_at = Time.new + (60 * 5)
+    @bounce.take_action_at = Time.at(params[:t].to_i)
     @bounce.save
 
     @follow.bounce = @bounce
