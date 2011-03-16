@@ -64,9 +64,7 @@ $(function() {
     	}
     });
     
-    $('#bounce-calendar').each(function() {
-    	$(this).datepicker();
-    })
+    $('#bounce-calendar').datepicker();
     
     $('#bounce-toggle-link').click(function(e) {
     	e.preventDefault();

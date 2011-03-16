@@ -3,7 +3,7 @@ class UnbounceController < ApplicationController
     @follow = Follow.where([ 'id=? and user_id=?', params[:id], @logged_in_user.id]).first
     
     bounce = @follow.bounce
-    if bounce.nil?
+    unless bounce.nil?
       bounce.canceled_at Time.now
       bounce.active = false
       bounce.save
