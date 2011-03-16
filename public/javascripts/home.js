@@ -48,7 +48,8 @@ $(function() {
 	});
     
     $('#search-results > li.no-bounce').live({
-    	mouseover: function(e) {
+    	mouseenter: function(e) {
+        	$('#bounce-pop-out').data('hovered', true);
     		$('#bounce-pop-out')
     			.css({ 
     				display: 'block',
@@ -58,10 +59,20 @@ $(function() {
     		$('#bounce-toggle-link')
     			.attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''));
     	},
-    	mouseout: function(e) {
-    		$('#bounce-pop-out')
-    		 	.css({ display: 'none' });
+    	mouseleave: function(e) {
+        	$('#bounce-pop-out').data('hovered', false)
+    		// Yeah, this right here is a shitty hack. I'll fix it when I have time to.
+    		setTimeout(function () {
+	    		if($('#bounce-pop-out').data('hovered') != true)
+		    		$('#bounce-pop-out').hide();
+    		}, 50);
     	}
+    });
+    
+    $('#bounce-pop-out').hover(function() {
+    	$('#bounce-pop-out').data('hovered', true)
+    }, function () {
+    	$('#bounce-pop-out').data('hovered', false)
     });
     
     $('#bounce-calendar').datepicker({ minDate: (new Date(new Date().getTime() + 1000 * 60 * 60 * 24)) });
