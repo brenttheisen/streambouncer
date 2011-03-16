@@ -42,7 +42,7 @@ class OauthController < ApplicationController
       @logged_in_user.twitter_access_token = access_token.token
       @logged_in_user.twitter_access_token_secret = access_token.secret
       
-      @logged_in_user.twitter_user = TwitterUser.new if @logged_in_user.twitter_user.nil? 
+      @logged_in_user.twitter_user = TwitterUser.where(:twitter_id => twitter_info['id']) || TwitterUser.new
       @logged_in_user.twitter_user.update_from_response twitter_info
       @logged_in_user.save
 
