@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
+  
   protect_from_forgery
   
   before_filter :ensure_domain
-  before_filter :set_user_controller
-  after_filter :set_user_session
+  before_filter :get_user_from_session
+  before_filter :get_user_from_cookie
+  after_filter :set_user_on_session
 
   APP_DOMAIN = 'streambouncer.com'
 
@@ -20,11 +22,18 @@ class ApplicationController < ActionController::Base
   
   private
   
-  def set_user_controller
+  def get_user_from_session
     @logged_in_user = session[:logged_in_user] unless session[:logged_in_user].nil?
   end
   
-  def set_user_session
+  def get_user_from_cookie
+    return unless @logged_in_user.nil? || cookies[:u].nil?
+      
+    @logged_in_user = User.where(:cookie => cookies[:u]).first
+  end
+  
+  def set_user_on_session
     session[:logged_in_user] = @logged_in_user
+    cookies[:u] = @logged_in_user.nil? ? nil : { :value => @logged_in_user.cookie, :expires => Time.now + 60 * 60 * 24 * 365 }
   end
 end

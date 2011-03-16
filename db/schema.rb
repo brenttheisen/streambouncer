@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110315234949) do
+ActiveRecord::Schema.define(:version => 20110316051640) do
 
   create_table "bounces", :force => true do |t|
     t.boolean  "active",            :default => true
@@ -69,13 +69,15 @@ ActiveRecord::Schema.define(:version => 20110315234949) do
   add_index "twitter_users", ["twitter_id"], :name => "index_twitter_users_on_twitter_id", :unique => true
 
   create_table "users", :force => true do |t|
-    t.integer  "twitter_user_id",             :null => false
-    t.string   "twitter_access_token",        :null => false
-    t.string   "twitter_access_token_secret", :null => false
+    t.integer  "twitter_user_id",                           :null => false
+    t.string   "twitter_access_token",                      :null => false
+    t.string   "twitter_access_token_secret",               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cookie",                      :limit => 64
   end
 
+  add_index "users", ["cookie"], :name => "index_users_on_cookie"
   add_index "users", ["twitter_user_id"], :name => "index_users_on_twitter_user_id", :unique => true
 
 end
