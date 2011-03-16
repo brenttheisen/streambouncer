@@ -59,8 +59,8 @@ $(function() {
     			.attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''));
     	},
     	mouseout: function(e) {
-    		// $('#bounce-pop-out')
-    		// 	.css({ display: 'none' });
+    		$('#bounce-pop-out')
+    		 	.css({ display: 'none' });
     	}
     });
     
