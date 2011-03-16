@@ -49,22 +49,26 @@ $(function() {
     
     $('#search-results > li.no-bounce').live({
     	mouseenter: function(e) {
-        	$('#bounce-pop-out').data('hovered', true);
-    		$('#bounce-pop-out')
-    			.css({ 
-    				display: 'block',
-    				top: $(this).position().top, 
-    				left: $(this).width() + 20 // Total hack, will figure out later
-    			});
+    		$('#search-results > li.active').removeClass('active');
+    		$(this).addClass('active');
+    		$('#bounce-pop-out').data('hovered', true);
+    		$('#bounce-pop-out').css({ 
+				display: 'block',
+				top: $(this).position().top, 
+				left: $(this).width() + 20 // Total hack, will figure out later
+			});
     		$('#bounce-toggle-link')
     			.attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''));
     	},
     	mouseleave: function(e) {
+    		var li = $(this);
         	$('#bounce-pop-out').data('hovered', false)
     		// Yeah, this right here is a shitty hack. I'll fix it when I have time to.
     		setTimeout(function () {
-	    		if($('#bounce-pop-out').data('hovered') != true)
+	    		if($('#bounce-pop-out').data('hovered') != true) {
+	    			li.removeClass('active');
 		    		$('#bounce-pop-out').hide();
+	    		}
     		}, 50);
     	}
     });

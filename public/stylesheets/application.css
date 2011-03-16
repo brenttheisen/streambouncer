@@ -52,7 +52,7 @@ a#header-logo {
 ul#search-results li.odd {background:#ffece0;border-left: 1px solid #ffece0; border-top: 1px solid #ffece0; border-bottom: 1px solid #ffece0;}
 ul#search-results li.even {background:#fbddca; border-left: 1px solid #fbddca; border-top: 1px solid #fbddca; border-bottom: 1px solid #fbddca;}
 ul#search-results li {list-style: none; margin: 0px; padding: 10px; margin-bottom: 1px; position: relative;}
-ul#search-results li:hover {background: #fffcd9; border-left: 1px solid #dfb092; border-top: 1px solid #dfb092; border-bottom: 1px solid #dfb092;}
+ul#search-results li.active {background: #fffcd9; border-left: 1px solid #dfb092; border-top: 1px solid #dfb092; border-bottom: 1px solid #dfb092;}
 ul#search-results li img {float: left; margin-right: 10px; width: 48px; height: 48px;}
 ul#search-results li .username {color:#e85900; font-weight: bold;}
 ul#search-results li .name {float: right; color:#e85900;}
