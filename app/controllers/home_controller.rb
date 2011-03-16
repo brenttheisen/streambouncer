@@ -29,9 +29,8 @@ class HomeController < ApplicationController
       
     find_params = { 
         :limit => SearchController::LIMIT, 
-        :include => [:twitter_user ]
-        # Had to take this out because of Postgres
-        # :order => 'if(follows.bounce_id is null, 1, 0), bounces.take_action_at'
+        :include => [:twitter_user ],
+        :order => 'bounces.take_action_at desc'
     }
     common_params = {
       :joins => 'left join bounces on (follows.bounce_id=bounces.id)',
