@@ -1,0 +1,14 @@
+<% if @logged_in_user.update_friends_progress.nil? %>
+  $("#progress-bar")
+    .show()
+    .progressbar({ value: 100 });
+    
+  $('#progress-description').html('Complete! Sending you to homepage...');
+  window.location.reload();
+<% elsif @logged_in_user.update_friends_progress > 0 %>
+  $("#progress-bar")
+    .show()
+    .progressbar({ value: 100 });
+  $('#progress-description').html('<%= @logged_in_user.update_friends_progress %>% complete');
+<% end %>  
+  

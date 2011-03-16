@@ -2,7 +2,24 @@
 
 <p>Right now we are getting your follower information from Twitter. This is a one time only process.</p>
 
-<div id="progress-bar-container">
-  <div id="progress-bar" style="width: <%=  %>"></div>
+<div id="progress-bar" <% if @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>style="display: none;"<% end %>></div>
+<div>
+  <span>Status:</span>
+  <span id="progress-description">
+    <% if @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>
+      Waiting for worker...
+    <% else %>
+      <%= @logged_in_user.update_friends_progress %>% complete
+    <% end %>
+  </span>
 </div>
-<div><%= @logged_in_user.update_friends_progress %>% complete</div>
+
+<script type="text/javascript">
+  <% if @logged_in_user.update_friends_progress.nil? || @logged_in_user.update_friends_progress == 0 %>
+    $("#progress-bar").progressbar({ value: <%= @logged_in_user.update_friends_progress %> });
+  <% end %> 
+  
+  setInterval(function() {
+      $.ajax({ url: '/update_friends_progress' });
+  }, 5000);
+</script>

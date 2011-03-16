@@ -1,0 +1,2 @@
+module UpdateFriendsProgressHelper
+end
