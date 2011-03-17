@@ -3,19 +3,22 @@
     twitter_user = follow.twitter_user 
 %>
   <li id="follow_<%= follow.id %>" class="<%= follow.bounce.nil? ? 'no-bounce' : 'bounce' %> <%= (index +2) % 2 == 0 ? 'even' : 'odd' %>">
-    <% unless follow.bounce.nil? %>
-      <%= render :partial => 'search/bounce_pop_up', :locals => { :follow => follow } %>
-    <% end %>
-    <div class="clear"></div>
-    <img src="<%= twitter_user.picture_url %>" />
-    <div class="name"><%= twitter_user.name %></div>
-    <div class="username"><%= twitter_user.username %></div>
-    <% unless twitter_user.last_tweet.nil? || twitter_user.last_tweet_at.nil? %>
-      <div class="tweet-container">
-        <div class="last-tweet"><%= twitter_user.last_tweet %></div>
-        <div class="last-tweet-at"><%= distance_of_time_in_words(twitter_user.last_tweet_at, Time.now) %> ago</div>
-      </div>
-    <% end %>
-		<div class="clear"></div>
+    <div class="twitter-user-info">
+      <img src="<%= twitter_user.picture_url %>" />
+      <div class="name"><%= twitter_user.name %></div>
+      <div class="username"><%= twitter_user.username %></div>
+      <% unless twitter_user.last_tweet.nil? || twitter_user.last_tweet_at.nil? %>
+        <div class="tweet-container">
+          <div class="last-tweet"><%= twitter_user.last_tweet %></div>
+          <div class="last-tweet-at"><%= distance_of_time_in_words(twitter_user.last_tweet_at, Time.now) %> ago</div>
+        </div>
+      <% end %>
+  		<div class="clear"></div>
+		</div>
+		<div class="bounce-info-container" <% if follow.bounce.nil? %>style="display: none;"<% end %>>
+      <% unless follow.bounce.nil? %>
+        <%= render :partial => 'search/bounce_info', :locals => { :follow => follow } %>
+      <% end %>
+    </div>
   </li>
 <% } %>

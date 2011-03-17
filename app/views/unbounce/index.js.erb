@@ -1,4 +1,4 @@
 $('#follow_<%= @follow.id %>')
   .removeClass('bounce')
   .addClass('no-bounce')
-  .find('div.pop-out').remove();
+  .find('div.bounce-info-container').slideUp();

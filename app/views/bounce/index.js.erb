@@ -1,6 +1,9 @@
-var html = "<%= escape_javascript(render(:partial => 'search/bounce_pop_up', :locals => { :follow => @follow })) %>";
+$('#bounce-pop-out').hide();
+
 $('#follow_<%= @follow.id %>')
+  .removeClass('active')
   .removeClass('no-bounce')
   .addClass('bounce')
-  .prepend(html);
-$('#bounce-pop-out').hide();
+  .find('div.bounce-info-container')
+    .html("<%= escape_javascript(render(:partial => 'search/bounce_info', :locals => { :follow => @follow })) %>")
+    .slideDown();

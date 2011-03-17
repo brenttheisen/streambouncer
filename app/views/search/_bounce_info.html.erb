@@ -1,0 +1,8 @@
+<div class="time-until-action">
+  Following in <span style="font-weight: bold;"><%= distance_of_time_in_words(follow.bounce.take_action_at, Time.now) %></span>
+</div>
+<div class="cancel-buttons">
+  <a class="button un-bounce ajax" href="/unbounce?f=1&id=<%= follow.id %>">Cancel</a>
+  <a class="button un-bounce ajax" href="/unbounce?f=0&id=<%= follow.id %>">Cancel and Follow Now</a>
+</div>
+<div class="clear"></div>
