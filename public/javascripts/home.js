@@ -42,7 +42,9 @@ $(function() {
 		});
 	
 	$('#search input.reset').click(function(e) {
-		$('#search input.search-box').val('');
+		$('#search input.search-box')
+			.val('')
+			.blur();
 		$('#search input.offset').val('');
 		$('#search').submit();
 	});
