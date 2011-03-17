@@ -3,6 +3,7 @@
 <% end %>
 var resultsHtml = "<%= escape_javascript(render(:partial => "results")) %>";
 <% if @offset == 0 %>
+  $('#bounce-pop-out').hide();
   $('#search-results').html(resultsHtml);
 <% else %> 
   $('#search-results > li.loading-more-results').replaceWith(resultsHtml);
