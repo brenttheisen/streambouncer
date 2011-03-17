@@ -37,7 +37,7 @@ class HomeController < ApplicationController
     find_params = { 
         :limit => SearchController::LIMIT, 
         :include => [:twitter_user ],
-        :order => 'bounces.take_action_at desc'
+        :order => 'bounces.take_action_at'
     }
     common_params = {
       :joins => 'left join bounces on (follows.bounce_id=bounces.id)',
