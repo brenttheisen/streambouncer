@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20110317053008) do
   create_table "follows", :force => true do |t|
     t.integer  "user_id",                           :null => false
     t.integer  "twitter_user_id",                   :null => false
-    t.boolean  "active",          :default => true
     t.integer  "bounce_id"
+    t.boolean  "active",          :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,13 +72,13 @@ ActiveRecord::Schema.define(:version => 20110317053008) do
     t.integer  "twitter_user_id",                           :null => false
     t.string   "twitter_access_token",                      :null => false
     t.string   "twitter_access_token_secret",               :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "cookie",                      :limit => 64
     t.integer  "friend_update_progress"
     t.integer  "update_friends_progress"
     t.datetime "updated_friends_at"
-    t.datetime "last_login",                                :null => false
+    t.datetime "last_login_at",                                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["cookie"], :name => "index_users_on_cookie"
