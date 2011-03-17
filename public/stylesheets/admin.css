@@ -1,0 +1,5 @@
+#content {width: 620px; left: 160px;}
+
+th, td {vertical-align: bottom; padding: 3px;}
+th {font-weight: bold; vertical-align: bottom; padding: 3px; text-align: center; border-bottom: 1px solid #000;}
+tr.even {background: #eee;}

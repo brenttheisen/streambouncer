@@ -1,23 +1,30 @@
+<%= stylesheet_link_tag 'admin' %>
+
 <table>
   <tr>
-    <th>Twitter Username</th>
-    <th>Active Bounces</th>
-    <th>Executed Bounces</th>
-    <th>Canceled Bounces</th>
-    <th>Total Bounces</th>
-    <th>Last Login</th>
+    <th style="width: 24%">Twitter Username</th>
+    <th style="width: 13%">Active Bounces</th>
+    <th style="width: 13%">Executed Bounces</th>
+    <th style="width: 13%">Canceled Bounces</th>
+    <th style="width: 13%">Total Bounces</th>
+    <th style="width: 24%">Last Login</th>
   </tr>
   <% 
-    @users.each do |user|
+    @users.each_with_index do |user, i|
       twitter_user = user.twitter_user 
+      bounces = Bounce.joins('join follows on (follows.id=bounces.follow_id)').where(['follows.user_id=?', user.id]);
+      active_bounce_count = bounces.inject(0) { |c, b| b.active ? c + 1 : c }
+      executed_bounce_count = bounces.inject(0) { |c, b| b.executed_at.nil? ? c : c + 1}
+      canceled_bounce_count = bounces.inject(0) { |c, b| b.canceled_at.nil? ? c : c + 1}
+      total_bounce_count = bounces.length
   %>
-    <tr>
-      <td><a href="http://twitter.com/<%= twitter_user.username %>" target="_blank"><%= twitter_user.username %></a> - <%= twitter_user.name %></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= distance_of_time_in_words(user.last_login_at, Time.now) %></td>
+    <tr class="<%= (i + 2) % 2 == 0 ? 'even' : 'odd' %>">
+      <td><a href="http://twitter.com/<%= twitter_user.username %>" target="_blank"><%= twitter_user.username %></a></td>
+      <td style="text-align: center;"><%= active_bounce_count %></td>
+      <td style="text-align: center;"><%= executed_bounce_count %></td>
+      <td style="text-align: center;"><%= canceled_bounce_count%></td>
+      <td style="text-align: center;"><%= total_bounce_count %></td>
+      <td style="text-align: center;"><%= distance_of_time_in_words(user.last_login_at, Time.now) %></td>
     </tr>
   <% end %>
 </table>
