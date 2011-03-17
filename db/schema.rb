@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316135407) do
+ActiveRecord::Schema.define(:version => 20110317053008) do
 
   create_table "bounces", :force => true do |t|
     t.boolean  "active",            :default => true
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110316135407) do
     t.integer  "friend_update_progress"
     t.integer  "update_friends_progress"
     t.datetime "updated_friends_at"
+    t.datetime "last_login",                                :null => false
   end
 
   add_index "users", ["cookie"], :name => "index_users_on_cookie"

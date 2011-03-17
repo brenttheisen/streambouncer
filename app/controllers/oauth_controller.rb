@@ -44,6 +44,7 @@ class OauthController < ApplicationController
       
       @logged_in_user.twitter_user = TwitterUser.where(:twitter_id => twitter_info['id']).first || TwitterUser.new
       @logged_in_user.twitter_user.update_from_response twitter_info
+      @logged_in_user.last_login = Time.now
       @logged_in_user.save
     else
       # Tell them auth failed

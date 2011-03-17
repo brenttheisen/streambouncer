@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     return unless @logged_in_user.nil? || cookies[:u].nil?
       
     @logged_in_user = User.where(:cookie => cookies[:u]).first
+    unless @logged_in_user.nil?
+      @logged_in_user.last_login = Time.now
+      @logged_in_user.save
+    end
   end
   
   def set_user_on_session
