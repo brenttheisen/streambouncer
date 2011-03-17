@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Twitter Username</th>
+    <th>Active Bounces</th>
+    <th>Executed Bounces</th>
+    <th>Canceled Bounces</th>
+    <th>Total Bounces</th>
+    <th>Last Login</th>
+  </tr>
+  <% 
+    @users.each do |user|
+      twitter_user = user.twitter_user 
+  %>
+    <tr>
+      <td><a href="http://twitter.com/<%= twitter_user.username %>" target="_blank"><%= twitter_user.username %></a> - <%= twitter_user.name %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= distance_of_time_in_words(user.last_login_at, Time.now) %></td>
+    </tr>
+  <% end %>
+</table>
