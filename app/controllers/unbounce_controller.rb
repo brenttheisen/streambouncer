@@ -4,7 +4,7 @@ class UnbounceController < ApplicationController
     
     bounce = @follow.bounce
     unless bounce.nil?
-      bounce.canceled_at Time.now
+      bounce.canceled_at = Time.now
       bounce.active = false
       bounce.save
     end
