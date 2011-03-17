@@ -47,36 +47,32 @@ $(function() {
 		$('#search').submit();
 	});
     
-    $('#search-results > li.no-bounce').live({
+    $('#search-results > li.no-bounce, #bounce-pop-out').live({
     	mouseenter: function(e) {
-    		$('#search-results > li.active').removeClass('active');
-    		$(this).addClass('active');
-    		$('#bounce-pop-out').data('hovered', true);
-    		$('#bounce-pop-out').css({ 
-				display: 'block',
-				top: $(this).position().top, 
-				left: $(this).width()
-			});
-    		$('#bounce-toggle-link')
-    			.attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''));
+    		$(this).data('hovered', true);
+    		if($(this).is('li.no-bounce')) {
+	    		$('#search-results > li.active').removeClass('active');
+	    		$(this).addClass('active');
+	    		$('#bounce-pop-out').css({ 
+					display: 'block',
+					top: $(this).position().top, 
+					left: $(this).width()
+				});
+	    		$('#bounce-toggle-link')
+	    			.attr('href', '/bounce?id=' + $(this).closest('li').attr('id').replace('follow_', ''));
+    		}
     	},
     	mouseleave: function(e) {
-    		var li = $(this);
-        	$('#bounce-pop-out').data('hovered', false)
-    		// Yeah, this right here is a shitty hack. I'll fix it when I have time to.
+        	$(this).data('hovered', false)
+
+        	// Yeah, this right here is a shitty hack. I'll fix it when I have time to.
     		setTimeout(function () {
-	    		if($('#bounce-pop-out').data('hovered') != true) {
-	    			li.removeClass('active');
+	    		if($('#bounce-pop-out').data('hovered') != true && $('#search-results > li.active').data('hovered') != true) {
+	    			$('#search-results > li.active').removeClass('active');
 		    		$('#bounce-pop-out').hide();
 	    		}
     		}, 50);
     	}
-    });
-    
-    $('#bounce-pop-out').hover(function() {
-    	$('#bounce-pop-out').data('hovered', true)
-    }, function () {
-    	$('#bounce-pop-out').data('hovered', false)
     });
     
     $('#bounce-calendar').datepicker({ minDate: (new Date(new Date().getTime() + 1000 * 60 * 60 * 24)) });
