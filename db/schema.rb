@@ -10,9 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110317053008) do
+ActiveRecord::Schema.define(:version => 20110317151538) do
 
   create_table "bounces", :force => true do |t|
+    t.integer  "follow_id",                            :null => false
     t.boolean  "active",            :default => true
     t.boolean  "hide_past_bounces", :default => false
     t.datetime "take_action_at",                       :null => false
@@ -76,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20110317053008) do
     t.integer  "friend_update_progress"
     t.integer  "update_friends_progress"
     t.datetime "updated_friends_at"
-    t.datetime "last_login_at",                                :null => false
+    t.datetime "last_login_at",                             :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

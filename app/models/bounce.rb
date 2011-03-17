@@ -1,5 +1,5 @@
 class Bounce < ActiveRecord::Base
-  has_one :follow
+  belongs_to :follow
   
   def perform
     return unless self.active
