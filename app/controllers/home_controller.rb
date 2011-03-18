@@ -40,7 +40,7 @@ class HomeController < ApplicationController
         :order => 'bounces.take_action_at'
     }
     common_params = {
-      :joins => 'left join bounces on (follows.bounce_id=bounces.id)',
+      :joins => 'left join bounces on (follows.active_bounce_id=bounces.id)',
       :conditions => ['follows.user_id=?', @logged_in_user.id],
     }
 

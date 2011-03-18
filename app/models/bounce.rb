@@ -2,7 +2,7 @@ class Bounce < ActiveRecord::Base
   belongs_to :follow
   
   def perform
-    return unless self.active
+    return unless self.follow.active_bounce_id = self.id
     
     self.reload
     
@@ -16,12 +16,10 @@ class Bounce < ActiveRecord::Base
     response = client.friend(twitter_user.twitter_id)
     logger.info "Refollow response... #{response.to_json}"
     
-    follow.bounce_id = nil
+    follow.active_bounce_id = nil
     follow.save 
     
-    self.active = false
-    self.executed_at Time.now
-    self.follow = nil
+    self.executed_at = Time.now
     self.save
   end
 end

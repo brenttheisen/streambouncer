@@ -2,7 +2,7 @@
   @follows.each_with_index { |follow, index|
     twitter_user = follow.twitter_user 
 %>
-  <li id="follow_<%= follow.id %>" class="<%= follow.bounce.nil? ? 'no-bounce' : 'bounce' %> <%= (index +2) % 2 == 0 ? 'even' : 'odd' %>">
+  <li id="follow_<%= follow.id %>" class="<%= follow.active_bounce.nil? ? 'no-bounce' : 'bounce' %> <%= (index +2) % 2 == 0 ? 'even' : 'odd' %>">
     <div class="twitter-user-info">
       <img src="<%= twitter_user.picture_url %>" />
       <div class="name"><%= twitter_user.name %></div>
@@ -15,8 +15,8 @@
       <% end %>
   		<div class="clear"></div>
 		</div>
-		<div class="bounce-info-container" <% if follow.bounce.nil? %>style="display: none;"<% end %>>
-      <% unless follow.bounce.nil? %>
+		<div class="bounce-info-container" <% if follow.active_bounce.nil? %>style="display: none;"<% end %>>
+      <% unless follow.active_bounce.nil? %>
         <%= render :partial => 'search/bounce_info', :locals => { :follow => follow } %>
       <% end %>
     </div>

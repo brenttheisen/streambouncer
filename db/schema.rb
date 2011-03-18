@@ -10,11 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110317151538) do
+ActiveRecord::Schema.define(:version => 20110318160151) do
 
   create_table "bounces", :force => true do |t|
     t.integer  "follow_id",                            :null => false
-    t.boolean  "active",            :default => true
     t.boolean  "hide_past_bounces", :default => false
     t.datetime "take_action_at",                       :null => false
     t.datetime "executed_at"
@@ -37,10 +36,10 @@ ActiveRecord::Schema.define(:version => 20110317151538) do
   end
 
   create_table "follows", :force => true do |t|
-    t.integer  "user_id",                           :null => false
-    t.integer  "twitter_user_id",                   :null => false
-    t.integer  "bounce_id"
-    t.boolean  "active",          :default => true
+    t.integer  "user_id",                            :null => false
+    t.integer  "twitter_user_id",                    :null => false
+    t.integer  "active_bounce_id"
+    t.boolean  "active",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

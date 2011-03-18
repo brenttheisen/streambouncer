@@ -12,8 +12,8 @@
   <% 
     @users.each_with_index do |user, i|
       twitter_user = user.twitter_user 
-      bounces = Bounce.joins('join follows on (follows.id=bounces.follow_id)').where(['follows.user_id=?', user.id]);
-      active_bounce_count = bounces.inject(0) { |c, b| b.active ? c + 1 : c }
+      bounces = Bounce.joins('join follows on (follows.id=bounces.follow_id)').where(['follows.user_id=?', user.id]).includes([:follow]);
+      active_bounce_count = bounces.inject(0) { |c, b| b.follow.active_bounce_id == b.id ? c + 1 : c }
       executed_bounce_count = bounces.inject(0) { |c, b| b.executed_at.nil? ? c : c + 1}
       canceled_bounce_count = bounces.inject(0) { |c, b| b.canceled_at.nil? ? c : c + 1}
       total_bounce_count = bounces.length
