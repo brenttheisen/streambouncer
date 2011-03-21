@@ -25,14 +25,14 @@ class HomeController < ApplicationController
       return
     end
     
-    if Time.now - @logged_in_user.updated_friends_at > (60 * 60 * 1)
+    if @logged_in_user.update_friends_progress.nil? && Time.now - @logged_in_user.updated_friends_at > (60 * 60 * 1)
       @logged_in_user.update_friends_progress = 0
       @logged_in_user.save
 
       Delayed::Job.enqueue(@logged_in_user)
     end
 
-    @past_bounces = Bounce.where(['hide_past_bounces=? and executed_at is not null', false]).order('executed_at desc').limit(3)
+    @past_bounces = Bounce.joins('join follows on (follows.id=bounces.id)').where(['follows.user_id=? and bounces.hide_past_bounces=? and bounces.executed_at is not null', @logged_in_user.id(), false]).order('executed_at desc').limit(3)
       
     find_params = { 
         :limit => SearchController::LIMIT, 
