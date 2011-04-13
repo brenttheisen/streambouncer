@@ -1,21 +1,5 @@
 <%= javascript_include_tag 'home' %>
 
-
-<% if @past_bounces.length > 0 %>
-  <h1>Past Bounces</h1>
-  <ul id="past-bounces">
-    <% 
-      @past_bounces.each do |bounce|
-        follow = bounce.follow
-        twitter_user = follow.twitter_user 
-    %>
-      <li>
-        Auto-followed <%= twitter_user.username %>.
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
 <form id="search" class="ajax" action="/search" method="get">
 		<input class="search-box placeholder" name="q" type="text" autocomplete="off" value="Search the people you follow..." />
 		<input class="offset" name="o" type="hidden" <% if @end_of_follows %>value="-1"<% end %> />

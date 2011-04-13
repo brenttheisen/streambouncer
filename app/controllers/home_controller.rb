@@ -32,8 +32,6 @@ class HomeController < ApplicationController
       Delayed::Job.enqueue(@logged_in_user)
     end
 
-    @past_bounces = Bounce.joins('join follows on (follows.id=bounces.id)').where(['follows.user_id=? and bounces.hide_past_bounces=? and bounces.executed_at is not null', @logged_in_user.id(), false]).order('executed_at desc').limit(3)
-      
     find_params = { 
         :limit => SearchController::LIMIT, 
         :include => [:twitter_user ],
