@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
         twitter_user_friend_ids << twitter_user.id
       }
       
-      self.update_friends_progress = ((twitter_user_friend_ids.length.to_f / self.twitter_user.friends_count.to_f) * 100.0).to_i
+      self.update_friends_progress = self.twitter_user.friends_count == 0 ? 100.0 : ((twitter_user_friend_ids.length.to_f / self.twitter_user.friends_count.to_f) * 100.0).to_i
       self.save
     end while next_cursor != 0
         
