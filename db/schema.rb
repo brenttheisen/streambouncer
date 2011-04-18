@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110318160151) do
+ActiveRecord::Schema.define(:version => 20110417232700) do
 
   create_table "bounces", :force => true do |t|
     t.integer  "follow_id",                            :null => false
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(:version => 20110318160151) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "twitter_bots", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "last_direct_message_id", :limit => 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "twitter_users", :force => true do |t|
     t.integer  "twitter_id",    :null => false

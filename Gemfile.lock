@@ -30,6 +30,9 @@ GEM
     activesupport (3.0.5)
     arel (2.0.9)
     builder (2.1.2)
+    chronic (0.3.0)
+    chronic_duration (0.9.4)
+      numerizer (~> 0.1.1)
     daemons (1.1.0)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -45,6 +48,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.6)
+    numerizer (0.1.1)
     oauth (0.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -80,6 +84,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  chronic
+  chronic_duration
   delayed_job
   mysql2
   rails (= 3.0.5)

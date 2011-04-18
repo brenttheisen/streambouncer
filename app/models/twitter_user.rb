@@ -1,5 +1,7 @@
 class TwitterUser < ActiveRecord::Base
   
+  has_one :user
+  
   def update_from_response(response)
     self.twitter_id = response['id']
     self.username = response['screen_name']
